@@ -1,0 +1,313 @@
+body {font-family: Helvetica, Arial Unicode MS, Arial; background-color:grey; }
+
+div, span, a, img { border-radius:10px; }
+
+.left{ float:left; display:block; }
+.right{ float:right; display:block; }
+.clear{ clear:both;}
+
+.error, .warn, .info { text-align:center; font-weight: bold; margin-bottom:5px; }
+.error { background-color: red; color:white; }
+.warn { background-color: yellow; color:black; }
+.info { background-color: aqua; color:black; }
+
+#login, #profile, #register { float:right; }
+
+#profile > a {
+	padding-left:5px;
+	padding-right:5px;
+}
+
+.parentCategory, .subCategory, #selectedCategory {
+	padding-left:10px;
+}
+
+.subCategory > a, .parentCategory > a  {
+	text-decoration:none;
+	color: blue;
+}
+
+#content {
+	width:100%;
+}
+
+#basketNavi, #categoryNavi, #orderNavi {
+	width: calc(20% - 15px);
+	margin-right:5px;
+	background-color:yellow;
+	padding: 5px;
+	float: left;
+}
+
+#categoryNavi > form > input[type=text]{
+	width: calc(100% - 5px);
+	float:left;
+}
+#categoryNavi > form > input[type=submit]{
+	float:right;
+}
+
+
+#mainContent {
+	width: calc(80% - 10px);
+	padding:5px;
+	background-color: lightgrey;
+}
+
+#navigation {
+	display:block;
+	width:100%;
+	background-color:lime;
+	text-align:center;
+	margin-bottom:5px;
+	height:40px;
+}
+
+#navigation > span, #login, #profile, #register, #title {
+	padding:5px;
+}
+
+#navigation > span, #navigation > div > span, #navigation > div > div {
+	height:30px; display:inline-block;
+	float:left;
+}
+
+#navigation > span > *, #navigation > div > span > *, #navigation > div > div > * {
+	text-decoration:none;
+	color: black;
+	height:30px; display:table-cell; vertical-align:middle;
+}
+
+#title {
+	font-weight:bold;
+	display:inline-block;
+}
+
+#profile > span {
+	margin-left:5px;
+	margin-right:5px;
+}
+
+
+
+div.category {
+	padding-left:5px;
+}
+
+.article{
+	margin:5px;
+	padding:5px;
+	background-color:orange;
+}
+
+.article > .imgHolder > img {
+	max-width: 200px;
+	max-height: 200px;
+}
+
+.article > .imgHolder {
+	display:block;
+	margin-right:5px;
+	float:left;
+}
+
+.article > a, .article > form {
+	float:right;
+}
+
+.articleItem {
+	display:block;
+	
+	min-height:50px;
+	width: calc(50% - 20px);
+	
+	float:left;
+	margin:5px;
+	padding:5px;
+	background-color:orange;
+	color:black;
+	text-decoration:none;
+}
+
+
+.articleItem > .imgHolder > img {
+	max-width: 50px;
+	max-height: 50px;
+}
+
+.articleItem > .imgHolder {
+	display: block;
+	width: 50px;
+	height: 50px;
+	/* margin-right: 5px; */
+	float:left;
+}
+
+.articleItem > span {
+	display:block;
+	padding-right: 5px;
+}
+
+.articleItem > span > span {
+	display:table-cell;
+	vertical-align:middle;
+	height: 50px;	
+}
+
+.articleItem > .price  {
+	float: right;
+	font-size:20px;
+	margin-left:10px;
+}
+
+.articleItem > .name  {
+	font-size:18px;
+}
+
+
+
+
+.basketItem {
+	display:block;
+	height:50px;
+	width: calc(100% - 20px);
+	float:left;
+	line-height:25px;
+	font-size:20px;
+	margin:5px;
+	padding:5px;
+	background-color:orange;
+	color:black;
+	text-decoration:none;
+}
+
+.basketItem > a {
+	color:black;
+	text-decoration:none;
+}
+
+.basketItem > .image {
+	float:left;
+}
+
+.basketItem > .image > .imgHolder > img {
+	max-width: 50px;
+	max-height: 50px;
+}
+
+.basketItem > .image > .imgHolder {
+	display:block;
+	height:50px;
+	/*margin-right:5px;*/
+	float:left;
+}
+
+.basketItem > div > span, .basketItem > a > span {
+	padding-right: 5px;
+	font-size:20px;
+	display: table-cell;
+	vertical-align: middle;
+	height: 50px;	
+}
+
+.basketItem > .control, .basketItem > .price {
+	float: right;
+}
+
+.basketItem > .control {
+	text-align:right;
+}
+
+.basketItem > .price {
+	margin-right:10px;
+}
+
+
+#mainContent > .order {
+	width: calc(100% - 20px);
+	background-color:orange;
+	margin:5px;
+	padding:5px;
+}
+
+.orderItem {
+	display:block;
+	height:25px;
+	width: calc(100% - 20px);
+	line-height:25px;
+	font-size:20px;
+	margin:5px;
+	padding:5px;
+	color:black;
+	text-decoration:none;
+}
+
+a.orderItem, span.orderItem {
+	background-color:lime;
+}
+
+.orderItem > a {
+	color:black;
+	text-decoration:none;
+}
+
+.orderItem > span > span, .orderItem > a > span {
+	padding-right: 5px;
+	font-size:20px;
+	display: table-cell;
+	vertical-align: middle;
+	height: 25px;
+}
+
+.orderItem > .name {
+	float: left;
+}
+
+.orderItem > .price, .orderItem > .amount {
+	float: right;
+	margin-right:10px;
+}
+
+.orderItem > .price > span, .orderItem > .amount > span {
+	text-align: right;
+	width:100px;
+}
+
+
+
+
+.orders > .order {
+	display:block;
+	height:30px;
+	
+	width: calc(100% - 20px);
+	
+	margin:5px;
+	padding:5px;
+	background-color:orange;
+	color:black;
+	text-decoration:none;
+	text-align:center;
+}
+
+.orders > .order > span {
+	font-size: 20px;
+	line-height:30px;
+	height: 30px;
+}
+.orders > .order > span.status {
+	width:150px;
+}
+
+
+.orders > .order > .date {
+	float: left;
+}
+
+.orders > .order > .status {
+	float: right;
+}
+
+.liefer, .rechnung {width: 50%;}
+.liefer {float: left;}
+.rechnung {float: right;}

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+
+
+<!-- (error*, warn*, info*, (login | user), category?, ( register | article | articles | createorder | order | orders | basket )? ) -->
+<xsd:element name="shop">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="error" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="warn" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="info" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element ref="user" minOccurs="0" maxOccurs="1"/>
+			<xsd:element ref="category" minOccurs="0" maxOccurs="1"/>
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element ref="register" minOccurs="1" maxOccurs="1"/>
+				<xsd:element ref="article" minOccurs="1" maxOccurs="1"/>
+				<xsd:element ref="articles" minOccurs="1" maxOccurs="1"/>
+				<xsd:element ref="createorder" minOccurs="1" maxOccurs="1"/>
+				<xsd:element ref="order" minOccurs="1" maxOccurs="1"/>
+				<xsd:element ref="orders" minOccurs="1" maxOccurs="1"/>
+				<xsd:element ref="basket" minOccurs="1" maxOccurs="1"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="q" type="xsd:string" use="optional"/>
+	</xsd:complexType>
+</xsd:element>
+
+
+
+
+<xsd:element name="error">
+	<xsd:complexType>
+		<xsd:attribute name="msg" type="xsd:string" use="required"/>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="warn">
+	<xsd:complexType>
+		<xsd:attribute name="msg" type="xsd:string" use="required"/>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="info">
+	<xsd:complexType>
+		<xsd:attribute name="msg" type="xsd:string" use="required"/>
+	</xsd:complexType>
+</xsd:element>
+
+
+
+
+<!-- user (liefer?, rechnung?) 
+	id, loginname, email
+-->
+<xsd:element name="user">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="liefer" minOccurs="0" maxOccurs="1"/>
+			<xsd:element ref="rechnung" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="id" use="required"/>
+		<xsd:attribute name="loginname" type="xsd:string" use="required"/>
+		<xsd:attribute name="email" type="email" use="required"/>
+	</xsd:complexType>
+</xsd:element>
+
+
+
+
+<!-- liefer (address?) -->
+<xsd:element name="liefer">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="address" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+
+
+
+<!-- rechnung (address?) -->
+<xsd:element name="rechnung">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="address" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+
+
+
+<!-- address (#PCDATA) id -->
+<!-- <xsd:element name="address" type="addressType" />
+<xsd:complexType name="addressType">
+	<xsd:simpleContent>
+		<xsd:extension base="xsd:string">
+        	<xsd:attribute name="id" type="id" use="required"/>
+		</xsd:extension>
+	</xsd:simpleContent>
+</xsd:complexType>
+-->
+<xsd:element name="address">
+  <xsd:complexType mixed="true">
+    <xsd:sequence>
+      <xsd:element ref="br" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="id" type="id" use="required"/>
+  </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="br"><xsd:complexType/></xsd:element>
+
+
+
+<!-- category (parent?, category*) id name -->
+<xsd:element name="category">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="parent" minOccurs="0" maxOccurs="1"/>
+			<xsd:element ref="category" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="id" use="required"/>
+		<xsd:attribute name="name" type="xsd:string" use="required"/>
+	</xsd:complexType>
+</xsd:element>
+
+
+
+
+<!-- parent (parent?) id name -->
+<xsd:element name="parent">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="parent" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="id" use="required"/>
+		<xsd:attribute name="name" type="xsd:string" use="required"/>
+	</xsd:complexType>
+</xsd:element>
+
+
+
+
+<!-- register loginname email price -->
+<xsd:element name="register">
+	<xsd:complexType>
+		<xsd:attribute name="loginname" type="xsd:string" use="optional"/>
+		<xsd:attribute name="email" type="xsd:string" use="optional"/>
+	</xsd:complexType>
+</xsd:element>
+
+
+
+
+<!-- article (desc?, category*) id name price -->
+<xsd:element name="article">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="desc" minOccurs="0" maxOccurs="1"/>
+			<xsd:element ref="category" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="id" use="required"/>
+		<xsd:attribute name="name" type="xsd:string" use="required"/>
+		<xsd:attribute name="price" type="price" use="required"/>
+		<xsd:attribute name="hasPicture" type="bool" use="required"/>
+	</xsd:complexType>
+</xsd:element>
+
+
+
+
+<!-- articles (article*) -->
+<xsd:element name="articles">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="article" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+
+
+
+<!-- createorder (liefer, rechnung, basket) -->
+<xsd:element name="createorder">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="liefer" minOccurs="1" maxOccurs="1"/>
+			<xsd:element ref="rechnung" minOccurs="1" maxOccurs="1"/>
+			<xsd:element ref="basket" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+
+
+
+<!-- order (liefer?, rechnung?, item*) id datetime price status -->
+<xsd:element name="order">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="liefer" minOccurs="0" maxOccurs="1"/>
+			<xsd:element ref="rechnung" minOccurs="0" maxOccurs="1"/>
+			<xsd:element ref="item" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="id" use="required"/>
+		<xsd:attribute name="datetime" type="datetime" use="required"/>
+		<xsd:attribute name="price" type="price" use="required"/>
+		<xsd:attribute name="status" type="status" use="required"/>
+	</xsd:complexType>
+</xsd:element>
+
+
+
+
+<!-- orders (order*) -->
+<xsd:element name="orders">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="order" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+
+
+
+<!-- basket (item*) -->
+<xsd:element name="basket">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="item" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+
+
+
+<!-- item (article) amount price? -->
+<xsd:element name="item">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element ref="article" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+		<xsd:attribute name="amount" type="xsd:positiveInteger" use="required"/>
+		<xsd:attribute name="price" type="price" use="optional"/>
+	</xsd:complexType>
+</xsd:element>
+
+
+
+
+<!-- einfache Elemente -->
+
+<xsd:element name="desc" type="xsd:string" />
+
+
+
+
+<!-- eigene Datentypen -->
+
+<xsd:simpleType name="id">
+	<xsd:restriction base="xsd:positiveInteger" />
+</xsd:simpleType>
+
+<xsd:simpleType name="email">
+	<xsd:restriction base="xsd:string">
+		<xsd:pattern value="\S+@\S+\.\S+"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="price">
+	<xsd:restriction base="xsd:string">
+		<xsd:pattern value="[0-9]+\.[0-9]{2} €"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="bool">
+	<xsd:restriction base="xsd:string">
+		<xsd:pattern value="((true)|(false))"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="datetime">
+	<xsd:restriction base="xsd:string">
+		<xsd:pattern value="([0-9]{4})-((0[1-9])|(10)|(11)|(12))-((0[1-9])|([1-2][0-9])|(30)|(31)) (([0-1][0-9])|(2[0-4])):([0-5][0-9]):([0-5][0-9])"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="status">
+  <xsd:restriction base="xsd:nonNegativeInteger">
+    <xsd:minInclusive value="0"/>
+	<xsd:maxInclusive value="5"/>
+  </xsd:restriction>
+</xsd:simpleType>
+
+
+
+
+
+</xsd:schema>

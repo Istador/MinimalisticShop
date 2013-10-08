@@ -1,0 +1,136 @@
+<!ELEMENT shop (error*, warn*, info*, user?, category?, ( register | article | articles | createorder | order | orders | basket )? )>
+<!ATTLIST shop
+	xmlns:xsi						CDATA #REQUIRED
+	xsi:noNamespaceSchemaLocation	CDATA #REQUIRED
+	q								CDATA #IMPLIED
+>
+
+
+
+
+<!-- Fehlermeldung -->
+<!ELEMENT error EMPTY>
+<!ATTLIST error
+	msg		CDATA #REQUIRED
+>
+
+
+
+
+<!-- Warnmeldung -->
+<!ELEMENT warn EMPTY>
+<!ATTLIST warn
+	msg		CDATA #REQUIRED
+>
+
+
+
+
+<!-- Infomeldung -->
+<!ELEMENT info EMPTY>
+<!ATTLIST info
+	msg		CDATA #REQUIRED
+>
+
+
+
+
+<!-- User -->
+
+<!ELEMENT user (liefer?, rechnung?)>
+<!ATTLIST user
+	id			CDATA #REQUIRED
+	loginname	CDATA #REQUIRED
+	email		CDATA #REQUIRED
+>
+
+<!ELEMENT liefer (address?)>
+
+<!ELEMENT rechnung (address?)>
+
+<!ELEMENT address (#PCDATA | br)*>
+<!ATTLIST address
+	id			CDATA #REQUIRED
+>
+
+<!ELEMENT br EMPTY>
+
+
+
+
+<!-- Kategorie -->
+
+<!ELEMENT category (parent?, category*)>
+<!ATTLIST category
+	id		CDATA #REQUIRED
+	name	CDATA #REQUIRED
+>
+
+<!ELEMENT parent (parent?)>
+<!ATTLIST parent
+	id		CDATA #REQUIRED
+	name	CDATA #REQUIRED
+>
+
+
+
+
+<!-- Register -->
+<!ELEMENT register EMPTY>
+<!ATTLIST register
+	loginname	CDATA #IMPLIED
+	email		CDATA #IMPLIED
+>
+
+
+
+
+<!-- Artikel -->
+
+<!ELEMENT article (desc?, category*)>
+<!ATTLIST article
+	id		CDATA #REQUIRED
+	name	CDATA #REQUIRED
+	price	CDATA #REQUIRED
+	hasPicture	CDATA #REQUIRED
+>
+
+<!ELEMENT desc (#PCDATA)>
+
+<!ELEMENT articles (article*)>
+
+
+
+
+<!-- Bestellung Erstellen -->
+<!ELEMENT createorder (liefer, rechnung, basket)>
+
+
+
+<!-- Bestellung -->
+
+<!ELEMENT order (liefer?, rechnung?, item*)>
+<!ATTLIST order
+	id			CDATA #REQUIRED
+	datetime	CDATA #REQUIRED
+	price		CDATA #REQUIRED
+	status		CDATA #REQUIRED
+>
+
+<!ELEMENT orders (order*)>
+
+
+
+
+<!-- Warenkorb -->
+<!ELEMENT basket (item*)>
+
+
+
+
+<!-- Items (sowohl für Bestellung als auch für Warenkorb) -->
+<!ELEMENT item (article)>
+<!ATTLIST item
+	amount		CDATA #REQUIRED
+	price		CDATA #IMPLIED
+>
